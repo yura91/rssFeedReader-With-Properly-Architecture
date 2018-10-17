@@ -3,6 +3,7 @@ package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.main;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.Spanned;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.R;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Item;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Rss;
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.utils.URLImageParser;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -40,9 +42,14 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
 
-        holder.tvCity.setText(Html.fromHtml(data.get(position).getTitle()));
-        holder.tvDesc.setText(Html.fromHtml(data.get(position).getDescription()));
-
+//        holder.tvCity.setText(Html.fromHtml(data.get(position).getTitle()));
+//        holder.tvDesc.setText(Html.fromHtml(data.get(position).getDescription()));
+        URLImageParser parserCity = new URLImageParser(holder.tvCity, context);
+        URLImageParser parserDesc= new URLImageParser(holder.tvDesc, context);
+        Spanned citySpan = Html.fromHtml(data.get(position).getTitle(), parserCity, null);
+        Spanned descSpan = Html.fromHtml(data.get(position).getDescription(), parserDesc, null);
+        holder.tvCity.setText(citySpan);
+        holder.tvDesc.setText(descSpan);
         /*String images = data.get(position).getBackground();
 
         picasso.with(context)
