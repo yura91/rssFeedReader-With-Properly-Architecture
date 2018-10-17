@@ -2,6 +2,7 @@ package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.main;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,17 +11,18 @@ import android.widget.TextView;
 
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.R;
-import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.CityListData;
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Item;
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Rss;
 import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-    private List<CityListData> data;
+    private ArrayList<Item> data;
     private Context context;
     Picasso picasso;
 
-    public MainAdapter(Context context, List<CityListData> data) {
+    public MainAdapter(Context context, ArrayList<Item> data) {
         this.data = data;
         this.context = context;
         picasso = MyApplication.appComponent.getPicasso();
@@ -38,26 +40,32 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
 
-        holder.tvCity.setText(data.get(position).getName());
-        holder.tvDesc.setText(data.get(position).getDescription());
+        holder.tvCity.setText(Html.fromHtml(data.get(position).getTitle()));
+        holder.tvDesc.setText(Html.fromHtml(data.get(position).getDescription()));
 
-        String images = data.get(position).getBackground();
+        /*String images = data.get(position).getBackground();
 
         picasso.with(context)
                 .load(images)
-                .into(holder.background);
+                .into(holder.background);*/
 
     }
-
 
     @Override
     public int getItemCount() {
-        return data.size();
+       return data.size();
     }
 
 
+   /* @Override
+    public int getItemCount() {
+        //return data.size();
+        return Integer.parseInt(null);
+    }*/
+
+
     public interface OnItemClickListener {
-        void onClick(CityListData Item);
+        void onClick(Rss Item);
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -73,11 +81,11 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         }
 
 
-        public void click(final CityListData cityListData, final OnItemClickListener listener) {
+        public void click(final Rss Rss, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    listener.onClick(cityListData);
+                    listener.onClick(Rss);
                 }
             });
         }

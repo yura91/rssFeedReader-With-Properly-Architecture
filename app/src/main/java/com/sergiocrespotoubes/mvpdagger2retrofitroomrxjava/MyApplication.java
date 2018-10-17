@@ -40,7 +40,7 @@ public class MyApplication extends Application {
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .dbModule(new DbModule(this))
-                .networkModule(new NetworkModule("http://private-b8cf44-androidcleancode.apiary-mock.com/"))
+                .networkModule(new NetworkModule("https://habrahabr.ru/rss/"))
                 .build();
 
         apiControllerRetrofit = appComponent.getApiControllerRetrofit();

@@ -9,7 +9,7 @@ import android.widget.ProgressBar;
 
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.R;
-import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.CityListResponse;
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Item;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -74,9 +74,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     }
 
-    @Override
-    public void getCityListSuccess(CityListResponse cityListResponse) {
-        MainAdapter mainAdapter = new MainAdapter(this, cityListResponse.getData());
+    public void getCityListSuccess(ArrayList<Item> cityListResponse) {
+        MainAdapter mainAdapter = new MainAdapter(this, cityListResponse);
         removeWait();
         list.setAdapter(mainAdapter);
     }

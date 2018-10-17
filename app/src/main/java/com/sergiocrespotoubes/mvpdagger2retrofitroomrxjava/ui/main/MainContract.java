@@ -1,9 +1,10 @@
 package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.main;
 
 
-import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.CityListResponse;
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Item;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.root.BaseContract;
 
+import java.util.ArrayList;
 import java.util.Observable;
 
 
@@ -16,7 +17,7 @@ public interface MainContract {
 
         void onFailure(String appErrorMessage);
 
-        void getCityListSuccess(CityListResponse cityListResponse);
+        void getCityListSuccess(ArrayList<Item> cityListResponse);
     }
 
     interface Presenter extends BaseContract.Presenter {

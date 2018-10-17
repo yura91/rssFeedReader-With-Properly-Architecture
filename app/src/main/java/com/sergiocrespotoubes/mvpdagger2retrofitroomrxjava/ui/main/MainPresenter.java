@@ -3,7 +3,7 @@ package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.main;
 
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.ApiControllerRetrofit;
-import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.CityListResponse;
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Rss;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.root.BaseContract;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -49,8 +49,8 @@ public class MainPresenter implements MainContract.Presenter {
         compositeDisposable.add(apiControllerRetrofit.getCityListResponses()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe((CityListResponse CityListResponses) -> {
-                   view.getCityListSuccess(CityListResponses);
+                .subscribe((Rss CityListResponses) -> {
+                   view.getCityListSuccess(CityListResponses.getChannel().getItem());
                 })
         );
     }
