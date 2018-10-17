@@ -51,6 +51,7 @@ public class MainPresenter implements MainContract.Presenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe((Rss CityListResponses) -> {
                    view.getCityListSuccess(CityListResponses.getChannel().getItem());
+
                 })
         );
     }

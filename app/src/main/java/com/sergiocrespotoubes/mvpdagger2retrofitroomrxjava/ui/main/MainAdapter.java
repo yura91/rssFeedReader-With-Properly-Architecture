@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +15,15 @@ import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.R;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Item;
 import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo.Rss;
-import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.utils.URLImageParser;
 import com.squareup.picasso.Picasso;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     private ArrayList<Item> data;
@@ -41,20 +47,22 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
+        Document documentT = Jsoup.parse(data.get(position).getTitle());
+        String srcT = documentT.select("img").attr("src");
+        documentT.select("img").remove();
+        String title = documentT.toString();
+        holder.tvCity.setText(Html.fromHtml(title));
 
-//        holder.tvCity.setText(Html.fromHtml(data.get(position).getTitle()));
-//        holder.tvDesc.setText(Html.fromHtml(data.get(position).getDescription()));
-        URLImageParser parserCity = new URLImageParser(holder.tvCity, context);
-        URLImageParser parserDesc= new URLImageParser(holder.tvDesc, context);
-        Spanned citySpan = Html.fromHtml(data.get(position).getTitle(), parserCity, null);
-        Spanned descSpan = Html.fromHtml(data.get(position).getDescription(), parserDesc, null);
-        holder.tvCity.setText(citySpan);
-        holder.tvDesc.setText(descSpan);
-        /*String images = data.get(position).getBackground();
-
-        picasso.with(context)
-                .load(images)
-                .into(holder.background);*/
+        Document documentD = Jsoup.parse(data.get(position).getDescription());
+        String srcD = documentD.select("img").attr("src");
+        documentD.select("img").remove();
+        String desc = documentD.toString();
+        holder.tvDesc.setText(Html.fromHtml(desc));
+        if(srcD != "" && srcD != null)
+        Picasso.with(context).load(srcD).into(holder.image);
+        else {
+           holder.image.setImageDrawable(null);
+        }
 
     }
 
@@ -77,12 +85,13 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvCity, tvDesc;
-        ImageView background;
+        ImageView background, image;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tvCity = itemView.findViewById(R.id.city);
             tvDesc = itemView.findViewById(R.id.hotel);
+            image = itemView.findViewById(R.id.imageImg);
             background = itemView.findViewById(R.id.image);
 
         }
