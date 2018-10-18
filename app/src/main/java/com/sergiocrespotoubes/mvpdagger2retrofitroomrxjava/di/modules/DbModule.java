@@ -19,7 +19,7 @@ public class DbModule {
     private MyRoomDatabase myRoomDatabase;
 
     public DbModule(Application mApplication) {
-        myRoomDatabase = Room.databaseBuilder(mApplication, MyRoomDatabase.class, "pregnancydb").build();
+        myRoomDatabase = Room.databaseBuilder(mApplication, MyRoomDatabase.class, "pregnancydb").allowMainThreadQueries().build();
     }
 
     @Provides

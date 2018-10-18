@@ -6,13 +6,14 @@ import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.List;
 
 
 @Dao
 public interface UserDao {
 
-
-
+    @Query("SELECT * FROM user")
+    List<User> getAll();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(User user);

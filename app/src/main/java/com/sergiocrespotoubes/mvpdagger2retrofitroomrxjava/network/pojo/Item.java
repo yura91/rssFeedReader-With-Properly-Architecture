@@ -1,11 +1,14 @@
 package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.network.pojo;
 
+import android.arch.persistence.room.Embedded;
+import android.arch.persistence.room.Entity;
+
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
-
 @Root(name = "item", strict = false)
 public class Item
 {
+    @Embedded
     private Guid guid;
 
     @Element(name = "pubDate", required = true )

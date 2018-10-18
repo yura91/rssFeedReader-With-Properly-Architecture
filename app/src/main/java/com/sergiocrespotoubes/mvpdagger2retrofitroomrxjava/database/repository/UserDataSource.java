@@ -28,7 +28,9 @@ public class UserDataSource implements UserRepository {
 
     @Override
     public void insertItems(List<User> items) {
-
+        for (User item: items) {
+            userDao.insert(item);
+        }
     }
 
     @Override
@@ -49,5 +51,10 @@ public class UserDataSource implements UserRepository {
     @Override
     public User getUser() {
         return null;
+    }
+
+    @Override
+    public List<User> getAll() {
+        return userDao.getAll();
     }
 }

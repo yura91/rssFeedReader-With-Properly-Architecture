@@ -1,6 +1,7 @@
 package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.main;
 
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +49,14 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        SwipeRefreshLayout pullToRefresh = findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.loadData();
+                pullToRefresh.setRefreshing(false);
+            }
+        });
         ButterKnife.bind(this);
         MainComponent mainComponent = MyApplication.appComponent.activityComponent().build();
         mainComponent.inject(this);

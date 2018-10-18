@@ -1,5 +1,9 @@
 package com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.database;
 
+import android.arch.persistence.room.Query;
+
+import com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.database.entity.User;
+
 import java.util.List;
 
 
