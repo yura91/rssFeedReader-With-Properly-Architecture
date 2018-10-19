@@ -13,7 +13,7 @@ import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssDao;
 @TypeConverters({Converters.class})
 public abstract class MyRoomDatabase extends RoomDatabase {
 
-    static final int VERSION = 2;
+    static final int VERSION = 1;
 
     public abstract RssDao userDao();
 

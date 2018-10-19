@@ -36,6 +36,10 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         picasso = MyApplication.appComponent.getPicasso();
     }
 
+    void clearData(){
+        data.clear();
+        notifyDataSetChanged();
+    }
 
     @Override
     public MainAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {

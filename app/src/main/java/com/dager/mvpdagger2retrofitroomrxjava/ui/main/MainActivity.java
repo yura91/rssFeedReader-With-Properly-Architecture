@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                ((MainAdapter)list.getAdapter()).clearData();
+                presenter.loadData();
                 presenter.loadData();
                 pullToRefresh.setRefreshing(false);
             }
