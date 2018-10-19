@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava">
+    package="com.dager.mvpdagger2retrofitroomrxjava">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme" >
 
         <activity
-            android:name="com.sergiocrespotoubes.mvpdagger2retrofitroomrxjava.ui.main.MainActivity"
+            android:name="com.dager.mvpdagger2retrofitroomrxjava.ui.main.MainActivity"
             android:label="@string/app_name"
             >
             <intent-filter>

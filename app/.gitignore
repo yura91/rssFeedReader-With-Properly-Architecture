@@ -55,8 +55,8 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
-### Example user template template
-### Example user template
+### Example rssItem template template
+### Example rssItem template
 
 # IntelliJ project files
 .idea
@@ -93,7 +93,7 @@ gen
 # Google Services (e.g. APIs or Firebase)
 
 # Freeline
-### Example user template template
-### Example user template
+### Example rssItem template template
+### Example rssItem template
 
 # IntelliJ project files
