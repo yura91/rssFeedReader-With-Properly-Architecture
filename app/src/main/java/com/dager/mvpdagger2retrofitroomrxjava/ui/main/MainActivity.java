@@ -77,14 +77,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
         state.putParcelable(KEY_RECYCLER_STATE, mListState);
     }
 
-   /* protected void onRestoreInstanceState(Bundle state) {
-        super.onRestoreInstanceState(state);
-
-        // Retrieve list state and list/item positions
-        if(state != null)
-            mListState = state.getParcelable(KEY_RECYCLER_STATE);
-    }*/
-
     @Override
     public void showWait() {
         progressBar.setVisibility(View.VISIBLE);
