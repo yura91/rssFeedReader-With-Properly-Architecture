@@ -21,14 +21,12 @@ import retrofit2.Response;
 public class MainPresenter implements MainContract.Presenter {
 
     private MainContract.View view;
-    private MainContract.Model model;
 
     private CompositeDisposable compositeDisposable;
     ApiControllerRetrofit apiControllerRetrofit;
     RssRepository rssRepository;
 
-    public MainPresenter(MainContract.Model model) {
-        this.model = model;
+    public MainPresenter() {
         apiControllerRetrofit = MyApplication.appComponent.getApiControllerRetrofit();
         rssRepository = MyApplication.appComponent.getUserRepository();
         compositeDisposable = new CompositeDisposable();

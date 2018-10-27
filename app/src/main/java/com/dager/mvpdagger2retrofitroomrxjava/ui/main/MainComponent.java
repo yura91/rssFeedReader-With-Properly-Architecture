@@ -19,6 +19,5 @@ public interface MainComponent {
     }
 
     MainContract.Presenter getMainPresenter();
-    MainContract.Model getMainModel();
 
 }

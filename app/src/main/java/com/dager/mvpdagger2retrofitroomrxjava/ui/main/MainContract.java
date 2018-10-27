@@ -5,7 +5,6 @@ import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssItem;
 import com.dager.mvpdagger2retrofitroomrxjava.ui.root.BaseContract;
 
 import java.util.List;
-import java.util.Observable;
 
 
 public interface MainContract {
@@ -22,10 +21,6 @@ public interface MainContract {
 
     interface Presenter extends BaseContract.Presenter {
         void loadData();
-    }
-
-    interface Model extends BaseContract.Model {
-        Observable result();
     }
 
 }

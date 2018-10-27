@@ -11,14 +11,8 @@ public class MainModule {
 
     @Provides
     @ActivityScoped
-    public MainContract.Presenter provideMainPresenter(MainContract.Model model){
-        return new MainPresenter(model);
-    }
-
-    @Provides
-    @ActivityScoped
-    public MainContract.Model provideMainModel(){
-        return new MainModel();
+    public MainContract.Presenter provideMainPresenter() {
+        return new MainPresenter();
     }
 
 }
