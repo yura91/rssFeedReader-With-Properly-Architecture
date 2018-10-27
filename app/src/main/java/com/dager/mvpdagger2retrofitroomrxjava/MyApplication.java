@@ -10,9 +10,6 @@ import com.dager.mvpdagger2retrofitroomrxjava.di.modules.AppModule;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.DbModule;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.NetworkModule;
 import com.dager.mvpdagger2retrofitroomrxjava.network.ApiControllerRetrofit;
-import com.squareup.picasso.Picasso;
-
-import net.danlew.android.joda.JodaTimeAndroid;
 
 
 
@@ -21,7 +18,6 @@ public class MyApplication extends Application {
     public static AppComponent appComponent;
 
     private ApiControllerRetrofit apiControllerRetrofit;
-    private Picasso picasso;
     public static MyRoomDatabase db;
 
     public static MyApplication get(Activity activity){
@@ -33,9 +29,6 @@ public class MyApplication extends Application {
         super.onCreate();
 
 
-        JodaTimeAndroid.init(this);
-
-
 
         appComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
@@ -44,7 +37,6 @@ public class MyApplication extends Application {
                 .build();
 
         apiControllerRetrofit = appComponent.getApiControllerRetrofit();
-        picasso = appComponent.getPicasso();
         db = appComponent.getMyRoomDatabase();
 
     }

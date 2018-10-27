@@ -5,7 +5,6 @@ import com.dager.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssItem;
 import com.dager.mvpdagger2retrofitroomrxjava.database.repository.RssRepository;
 import com.dager.mvpdagger2retrofitroomrxjava.network.ApiControllerRetrofit;
-import com.dager.mvpdagger2retrofitroomrxjava.network.pojo.Item;
 import com.dager.mvpdagger2retrofitroomrxjava.network.pojo.Rss;
 import com.dager.mvpdagger2retrofitroomrxjava.ui.root.BaseContract;
 
@@ -16,6 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.observers.DisposableSingleObserver;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 
 public class MainPresenter implements MainContract.Presenter {
@@ -57,32 +57,26 @@ public class MainPresenter implements MainContract.Presenter {
         compositeDisposable.add(apiControllerRetrofit.getCityListResponses()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(new DisposableSingleObserver<Rss>() {
+                .subscribeWith(new DisposableSingleObserver<Response<Rss>>() {
 
                     @Override
-                    public void onSuccess(Rss rss) {
-
+                    public void onSuccess(Response<Rss> rss) {
                         List<RssItem> rssItemList = new ArrayList<>();
-                        for (Item item : rss.getChannel().getItem()) {
+                        for (int i = 0; i < rss.body().getChannel().getItem().size(); i++) {
                             RssItem rssItem = new RssItem();
-                            rssItem.setItem(item);
+                            rssItem.setId(i + 1);
+                            rssItem.setItem(rss.body().getChannel().getItem().get(i));
                             rssItemList.add(rssItem);
                         }
-
-                        rssRepository.insertItems(rssItemList);
-                        view.getRssListSuccess(rss.getChannel().getItem());
+                        rssRepository.upsetItems(rssItemList);
+                        view.getRssListSuccess(rssItemList);
                     }
 
 
                     @Override
                     public void onError(Throwable e) {
                         e.printStackTrace();
-                        List<Item> rssList = new ArrayList<>();
-                        for (RssItem rssItem : rssRepository.getAll()) {
-                            Item item = rssItem.getItem() ;
-                            rssList.add(item);
-                        }
-                        view.getRssListSuccess((ArrayList<Item>) rssList);
+                        view.getRssListSuccess(rssRepository.getAll());
                     }
 
                 }));

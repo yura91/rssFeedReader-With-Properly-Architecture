@@ -3,42 +3,38 @@ package com.dager.mvpdagger2retrofitroomrxjava.ui.main;
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.dager.mvpdagger2retrofitroomrxjava.MyApplication;
 import com.dager.mvpdagger2retrofitroomrxjava.R;
-import com.dager.mvpdagger2retrofitroomrxjava.network.pojo.Item;
+import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssItem;
 import com.dager.mvpdagger2retrofitroomrxjava.network.pojo.Rss;
 import com.squareup.picasso.Picasso;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
-import org.jsoup.nodes.Element;
-import org.jsoup.select.Elements;
 
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
-    private ArrayList<Item> data;
+    private ArrayList<RssItem> data;
     private Context context;
-    Picasso picasso;
 
-    public MainAdapter(Context context, ArrayList<Item> data) {
+    public MainAdapter(Context context, ArrayList<RssItem> data) {
         this.data = data;
         this.context = context;
-        picasso = MyApplication.appComponent.getPicasso();
     }
 
     void clearData(){
         data.clear();
         notifyDataSetChanged();
+    }
+
+    public ArrayList<RssItem> getData() {
+        return data;
     }
 
     @Override
@@ -51,19 +47,20 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(MainAdapter.ViewHolder holder, int position) {
-        Document documentT = Jsoup.parse(data.get(position).getTitle());
+        Document documentT = Jsoup.parse(data.get(position).getItem().getTitle());
         String srcT = documentT.select("img").attr("src");
         documentT.select("img").remove();
         String title = documentT.toString();
         holder.tvCity.setText(Html.fromHtml(title));
 
-        Document documentD = Jsoup.parse(data.get(position).getDescription());
+        Document documentD = Jsoup.parse(data.get(position).getItem().getDescription());
         String srcD = documentD.select("img").attr("src");
         documentD.select("img").remove();
         String desc = documentD.toString();
         holder.tvDesc.setText(Html.fromHtml(desc));
-        if(srcD != "" && srcD != null)
-        Picasso.with(context).load(srcD).into(holder.image);
+        if (srcD != "" && srcD != null) {
+            Picasso.with(context).load(srcD).into(holder.image);
+        }
         else {
            holder.image.setImageDrawable(null);
         }
@@ -74,13 +71,6 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     public int getItemCount() {
        return data.size();
     }
-
-
-   /* @Override
-    public int getItemCount() {
-        //return data.size();
-        return Integer.parseInt(null);
-    }*/
 
 
     public interface OnItemClickListener {

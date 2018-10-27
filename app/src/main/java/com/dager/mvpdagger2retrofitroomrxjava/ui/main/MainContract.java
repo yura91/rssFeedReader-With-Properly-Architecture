@@ -1,10 +1,10 @@
 package com.dager.mvpdagger2retrofitroomrxjava.ui.main;
 
 
-import com.dager.mvpdagger2retrofitroomrxjava.network.pojo.Item;
+import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssItem;
 import com.dager.mvpdagger2retrofitroomrxjava.ui.root.BaseContract;
 
-import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 
@@ -17,7 +17,7 @@ public interface MainContract {
 
         void onFailure(String appErrorMessage);
 
-        void getRssListSuccess(ArrayList<Item> cityListResponse);
+        void getRssListSuccess(List<RssItem> rssItems);
     }
 
     interface Presenter extends BaseContract.Presenter {

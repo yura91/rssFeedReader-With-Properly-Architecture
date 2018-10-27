@@ -16,26 +16,22 @@ public class RssDataSource implements RssRepository {
         this.rssDao = rssDao;
     }
 
-    @Override
-    public void updateItems(List items) {
 
+    @Override
+    public int countRssItem() {
+        return rssDao.countRssItem();
     }
 
     @Override
-    public void intert(RssItem item) {
-        rssDao.insert(item);
+    public void upset(RssItem item) {
+        rssDao.upset(item);
     }
 
     @Override
-    public void insertItems(List<RssItem> items) {
+    public void upsetItems(List<RssItem> items) {
         for (RssItem item: items) {
-            rssDao.insert(item);
+            rssDao.upset(item);
         }
-    }
-
-    @Override
-    public void updateItem(RssItem item) {
-        rssDao.update(item);
     }
 
     @Override

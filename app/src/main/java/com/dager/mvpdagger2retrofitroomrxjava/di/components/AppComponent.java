@@ -6,11 +6,9 @@ import com.dager.mvpdagger2retrofitroomrxjava.database.repository.RssRepository;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.AppModule;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.DbModule;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.NetworkModule;
-import com.dager.mvpdagger2retrofitroomrxjava.di.modules.PicassoModule;
 import com.dager.mvpdagger2retrofitroomrxjava.di.scopes.ApplicationScoped;
 import com.dager.mvpdagger2retrofitroomrxjava.network.ApiControllerRetrofit;
 import com.dager.mvpdagger2retrofitroomrxjava.ui.main.MainComponent;
-import com.squareup.picasso.Picasso;
 
 import dagger.Component;
 
@@ -19,14 +17,8 @@ import dagger.Component;
 @Component(modules = {
         AppModule.class,
         DbModule.class,
-        PicassoModule.class,
         NetworkModule.class})
 public interface AppComponent {
-
-
-
-
-    Picasso getPicasso();
 
     MyRoomDatabase getMyRoomDatabase();
 
