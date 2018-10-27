@@ -10,7 +10,7 @@ import retrofit2.http.GET;
 public interface ApiControllerRetrofit {
 
     @GET("hubs/all")
-    Single<Response<Rss>> getCityListResponses();
+    Single<Response<Rss>> getRssListResponses();
 
 
 }

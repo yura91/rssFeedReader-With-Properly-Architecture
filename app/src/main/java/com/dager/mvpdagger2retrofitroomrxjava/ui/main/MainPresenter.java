@@ -52,7 +52,7 @@ public class MainPresenter implements MainContract.Presenter {
 
     private void getCityListResponses() {
         view.showWait();
-        compositeDisposable.add(apiControllerRetrofit.getCityListResponses()
+        compositeDisposable.add(apiControllerRetrofit.getRssListResponses()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(new DisposableSingleObserver<Response<Rss>>() {
