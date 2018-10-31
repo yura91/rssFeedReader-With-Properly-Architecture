@@ -5,13 +5,10 @@ import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssItem;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 public class RssDataSource implements RssRepository {
 
     private RssDao rssDao;
 
-    @Inject
     public RssDataSource(RssDao rssDao) {
         this.rssDao = rssDao;
     }
