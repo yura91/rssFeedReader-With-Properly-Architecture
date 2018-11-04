@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -12,7 +11,7 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/imageBackground"
             android:layout_width="match_parent"
             android:layout_height="240dp"
             android:scaleType="fitXY"/>
@@ -28,7 +27,7 @@
         android:background="#5000">
 
         <TextView
-            android:id="@+id/city"
+            android:id="@+id/tvTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yogyakarta"
@@ -40,7 +39,7 @@
 
 
         <TextView
-            android:id="@+id/hotel"
+            android:id="@+id/tvDesc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="338 Hotel"

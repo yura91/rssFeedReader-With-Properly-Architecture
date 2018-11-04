@@ -51,7 +51,7 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
         String srcT = documentT.select("img").attr("src");
         documentT.select("img").remove();
         String title = documentT.toString();
-        holder.tvCity.setText(Html.fromHtml(title));
+        holder.tvTitle.setText(Html.fromHtml(title));
 
         Document documentD = Jsoup.parse(data.get(position).getItem().getDescription());
         String srcD = documentD.select("img").attr("src");
@@ -78,15 +78,15 @@ public class MainAdapter extends RecyclerView.Adapter<MainAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView tvCity, tvDesc;
+        TextView tvTitle, tvDesc;
         ImageView background, image;
 
         public ViewHolder(View itemView) {
             super(itemView);
-            tvCity = itemView.findViewById(R.id.city);
-            tvDesc = itemView.findViewById(R.id.hotel);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvDesc = itemView.findViewById(R.id.tvDesc);
             image = itemView.findViewById(R.id.imageImg);
-            background = itemView.findViewById(R.id.image);
+            background = itemView.findViewById(R.id.imageBackground);
 
         }
 
