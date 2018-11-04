@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity implements MainContract.View
 
     Parcelable mListState;
     private final String KEY_RECYCLER_STATE = "recycler_state";
-    private final String KEY_ITEMS_LIST = "items_list";
     @Inject
     MainContract.Presenter presenter;
 
