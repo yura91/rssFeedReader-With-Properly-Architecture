@@ -30,14 +30,14 @@ public class DbModule {
 
     @Provides
     @ApplicationScoped
-    RssDao provideUserDao(MyRoomDatabase myRoomDatabase) {
-        return myRoomDatabase.userDao();
+    RssDao provideRssDao(MyRoomDatabase myRoomDatabase) {
+        return myRoomDatabase.rssDao();
     }
 
     @Provides
     @ApplicationScoped
-    RssRepository provideNameRepository(RssDao nameDao) {
-        return new RssDataSource(nameDao);
+    RssRepository provideNameRepository(RssDao rssDao) {
+        return new RssDataSource(rssDao);
     }
 
 }

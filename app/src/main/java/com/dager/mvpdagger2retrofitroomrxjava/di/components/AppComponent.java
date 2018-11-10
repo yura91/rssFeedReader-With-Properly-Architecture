@@ -1,7 +1,5 @@
 package com.dager.mvpdagger2retrofitroomrxjava.di.components;
 
-import com.dager.mvpdagger2retrofitroomrxjava.database.MyRoomDatabase;
-import com.dager.mvpdagger2retrofitroomrxjava.database.entity.RssDao;
 import com.dager.mvpdagger2retrofitroomrxjava.database.repository.RssRepository;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.AppModule;
 import com.dager.mvpdagger2retrofitroomrxjava.di.modules.DbModule;
@@ -20,15 +18,11 @@ import dagger.Component;
         NetworkModule.class})
 public interface AppComponent {
 
-    MyRoomDatabase getMyRoomDatabase();
-
     ApiControllerRetrofit getApiControllerRetrofit();
 
 
     MainComponent.Builder activityComponent();
 
-
-    RssDao getUserDao();
     RssRepository getUserRepository();
 
 }
