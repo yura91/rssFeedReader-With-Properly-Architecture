@@ -15,9 +15,4 @@ public interface BaseContract {
 
         void dropView();
     }
-
-    interface Model {
-
-    }
-
 }
